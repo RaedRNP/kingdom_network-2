@@ -1,0 +1,115 @@
+---
+import { Image } from "astro:assets";
+import KNLogo from "../assets/logo-png.png";
+---
+
+<footer class="bg-[var(--bg-main-green)]">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <div class="mb-6 md:mb-0">
+                <a href="https://flowbite.com/" class="flex items-center">
+                    <Image
+                        src={KNLogo}
+                        alt="Kingdom Network Logo"
+                        class="h-24 w-auto"
+                    />
+                    <!-- <span
+                        class="self-center text-lg font-semibold whitespace-nowrap text-[var(--bg-main-dark-blue)] font-[Ethnocentric] text-end"
+                        >Kingdom <br /><span
+                            class="font-[tt-travels] text-[var(--text-own-black)]"
+                            >Network</span
+                        ></span
+                    > -->
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div>
+                    <h2
+                        class="mb-6 text-sm font-semibold text-[var(--bg-main-dark-blue)] uppercase"
+                    >
+                        Nosotros
+                    </h2>
+                    <ul class="text-[var(--color-gray-special)] font-medium">
+                        <li class="mb-4">
+                            <a
+                                href="https://tailwindcss.com/"
+                                class="hover:underline">Centro de Ayuda</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://tailwindcss.com/"
+                                class="hover:underline">Instalador</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2
+                        class="mb-6 text-sm font-semibold text-[var(--bg-main-dark-blue)] uppercase"
+                    >
+                        Síguenos
+                    </h2>
+                    <ul class="text-[var(--color-gray-special)] font-medium">
+                        <li class="mb-4">
+                            <a
+                                href="https://www.instagram.com/kingdomnetworkc.a/"
+                                class="hover:underline">Instagram</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.threads.net/@kingdomnetworkc.a"
+                                class="hover:underline">Threads</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2
+                        class="mb-6 text-sm font-semibold text-[var(--bg-main-dark-blue)] uppercase"
+                    >
+                        Legal
+                    </h2>
+                    <ul class="text-[var(--color-gray-special)] font-medium">
+                        <li class="mb-4">
+                            <a href="#" class="hover:underline"
+                                >Política de Privacidad</a
+                            >
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline"
+                                >Términos y Condiciones</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr
+            class="my-6 border-[var(--color-gray-special)] sm:mx-auto lg:my-8"
+        />
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <span class="text-sm text-[var(--color-gray-special)] sm:text-start"
+                ><a href="https://kingdomnetwork.com.ve" class="hover:underline"
+                    >Kingdom Network, S. A.</a
+                > Todos los derechos reservados © 2025<br />Rif: J-501019002
+            </span>
+            <div class="flex mt-4 sm:justify-center sm:mt-0 flex-col text-end">
+                <h4><strong>Número de Soporte Técnico: </strong></h4>
+                <a
+                    href="#"
+                    class="text-[var(--color-gray-special)] hover:text-gray-900"
+                >
+                    +58 424-6057955
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        box-shadow: 0 -5px 5px 0 #15151515;
+    }
+</style>
