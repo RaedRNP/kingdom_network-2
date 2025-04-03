@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "../../node_modules/flowbite";
+
+@theme {
+    --bg-main-dark-blue: #060494;
+    --bg-main-green: #c3fb14;
+
+    --color-gray-special: #4c4c4b;
+
+    --text-own-blue: #0404fa;
+    --text-own-black: #040406;
+    --text-own-gray: #dad2cd;
+}
+
+@font-face {
+    font-family: "Ethnocentric";
+    src: url("/fonts/ethnocentric_rg.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "tt-travels";
+    src: url("/fonts/tt-travels-regular.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+}
