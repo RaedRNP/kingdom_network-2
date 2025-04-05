@@ -1,0 +1,28 @@
+---
+import Card from "../components/Card.astro";
+---
+
+<section
+    class="h-screen flex flex-col justify-around items-center border border-gray-300 m-2 rounded-lg"
+>
+    <h2 class="text-4xl text-center font-semibold w-2/3">
+        Tu conexión ideal te espera: explora nuestros planes hechos a tu medida.
+    </h2>
+    <div class="w-full h-auto flex items-center justify-evenly">
+        <Card
+            planName="Básico"
+            price={15}
+            Clss="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8"
+        />
+        <Card
+            planName="Estándar | Favorito"
+            price={25}
+            Clss="w-full max-w-sm p-4 bg-white border-4 border-[var(--bg-main-green)] rounded-lg shadow-sm sm:p-8"
+        />
+        <Card
+            planName="Premium"
+            price={35}
+            Clss="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-8"
+        />
+    </div>
+</section>
