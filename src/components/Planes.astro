@@ -3,12 +3,16 @@ import Card from "../components/Card.astro";
 ---
 
 <section
-    class="h-screen flex flex-col justify-around items-center border border-gray-300 m-2 rounded-lg"
+    class="min-h-screen h-auto flex flex-col justify-around items-center md:border border-gray-300 md:m-2 rounded-lg p-2"
 >
-    <h2 class="text-4xl text-center font-semibold w-2/3">
+    <h2
+        class="text-xl sm:text-4xl text-center font-semibold sm:w-2/3 py-10 sm:py-0"
+    >
         Tu conexión ideal te espera: explora nuestros planes hechos a tu medida.
     </h2>
-    <div class="w-full h-auto flex items-center justify-evenly">
+    <div
+        class="w-full min-h-fit h-auto flex sm:flex-row flex-col items-center justify-evenly gap-4"
+    >
         <Card
             planName="Básico"
             price={15}
