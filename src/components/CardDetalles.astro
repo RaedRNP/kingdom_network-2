@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+
+let { title, description, image } = Astro.props;
+---
+
+<div class="max-w-sm">
+    <Image
+        class="p-5 object-cover w-full rounded-t-lg h-96 md:h-auto md:w-32 md:rounded-none md:rounded-s-lg"
+        src={image}
+        alt="wifi icon"
+    />
+
+    <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+            {title}
+        </h5>
+        <p class="mb-3 font-normal text-gray-700">
+            {description}
+        </p>
+    </div>
+</div>
