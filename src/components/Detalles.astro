@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import CardDetalles from "./CardDetalles.astro";
+import WiFi from "../assets/wifi.svg";
+import Battery from "../assets/battery-vertical-charging.svg";
+import Affiliate from "../assets/affiliate.svg";
+---
+
+<section
+    class="h-auto flex flex-col justify-around items-center md:border border-gray-300 md:m-2 rounded-lg py-12 gap-5"
+>
+    <h2
+        class="text-xl sm:text-4xl text-center font-semibold sm:w-2/3 py-6 sm:py-4"
+    >
+        Conéctate sin preocupaciones: nuestra infraestructura de vanguardia
+        garantiza un servicio de internet confiable.
+    </h2>
+    <div class="flex justify-around items-center w-full">
+        <CardDetalles
+            title="Olvida las Caídas"
+            description="Te ofrecemos más del 99% de disponibilidad en nuestro servicio."
+            image={WiFi}
+        />
+        <CardDetalles
+            title="A Prueba de Apagones"
+            description="Nuestro Servicio Sigue Activo Gracias al Respaldo Eléctrico."
+            image={Battery}
+        />
+        <CardDetalles
+            title="Confía en los Expertos"
+            description="Asistencia profesional para tu servicio de fibra. Estamos para ti 24/7."
+            image={Affiliate}
+        />
+    </div>
+</section>
