@@ -5,7 +5,7 @@ let { planName, price, Clss, megas, desc } = Astro.props;
 <div
     class={`w-full h-[34rem] max-w-sm p-4 bg-white rounded-lg shadow-sm sm:p-8 flex flex-col justify-between ${Clss}`}
 >
-    <div>
+    <div class="w-full">
         <h5 class="mb-4 text-xl font-medium text-gray-500">
             {planName}
         </h5>
@@ -33,7 +33,7 @@ let { planName, price, Clss, megas, desc } = Astro.props;
                 >
             </li>
         </ul>
-        <p class="space-y-5 my-7">
+        <p class="space-y-5 my-7 w-[300px] sm:w-full">
             {desc}
         </p>
     </div>
