@@ -1,0 +1,21 @@
+---
+import LeafletMap from "../components/LeafletMap.astro";
+---
+
+<section class="h-fit w-11/12 mx-auto py-12 text-center">
+    <h2
+        class="text-xl sm:text-4xl text-center font-semibold sm:w-2/3 py-12 sm:py-0 mx-auto mb-16"
+    >
+        Verifica Nuestra Disponibilidad
+    </h2>
+    <div id="map-container" class="rounded-sm w-1/2">
+        <LeafletMap
+            latitude={10.2132872}
+            longitude={-71.2624523}
+            zoom={13.2}
+            container="map-container"
+            tileLayer="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+        />
+    </div>
+</section>
