@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import CardDetalles from "./CardDetalles.astro";
 import WiFi from "../assets/wifi.svg";
 import Battery from "../assets/battery-vertical-charging.svg";
@@ -15,7 +14,7 @@ import Affiliate from "../assets/affiliate.svg";
         Conéctate sin preocupaciones: nuestra infraestructura de vanguardia
         garantiza un servicio de internet confiable.
     </h2>
-    <div class="flex justify-around items-center w-full">
+    <div class="flex flex-col sm:flex-row justify-around items-center w-full">
         <CardDetalles
             title="Olvida las Caídas"
             description="Te ofrecemos más del 99% de disponibilidad en nuestro servicio."
