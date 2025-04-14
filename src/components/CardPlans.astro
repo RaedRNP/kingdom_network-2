@@ -2,27 +2,36 @@
 interface Props {
     planName: string;
     price: number;
-    Clss: string;
     megas: number;
     desc?: string;
     advantages?: string[];
     btnActive?: boolean;
+    favorite?: boolean;
 }
 
 let {
     planName,
     price,
-    Clss,
     megas,
     desc,
     advantages,
     btnActive = true,
+    favorite = false,
 } = Astro.props;
 ---
 
 <div
-    class={`w-full h-[34rem] max-w-sm p-4 bg-white rounded-lg shadow-sm sm:p-8 flex flex-col justify-between ${Clss}`}
+    class={favorite
+        ? `w-full h-[34rem] max-w-sm p-4 bg-white rounded-lg shadow-sm sm:p-8 flex flex-col justify-between relative border-4 border-[var(--bg-main-green)]`
+        : `w-full h-[34rem] max-w-sm p-4 bg-white rounded-lg shadow-sm sm:p-8 flex flex-col justify-between relative border border-gray-200`}
 >
+    {
+        favorite && (
+            <div class="w-32 h-10 bg-[var(--bg-main-green)] absolute right-0 top-0 rounded-bl-sm rounded-tr-sm justify-center flex items-center">
+                <h3 class="text-black font-semibold">Más Popular</h3>
+            </div>
+        )
+    }
     <div class="w-full">
         <h5 class="mb-4 text-xl font-medium text-gray-500">
             {planName}
@@ -54,7 +63,7 @@ let {
             {
                 advantages ? (
                     advantages?.map((data) => (
-                        <li class="flex items-center">
+                        <li class="flex items-center w-72">
                             <svg
                                 class="shrink-0 w-4 h-4 text-blue-700"
                                 aria-hidden="true"
