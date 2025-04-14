@@ -21,7 +21,6 @@ import Card from "../components/CardPlans.astro";
         <Card
             planName="Esencial"
             price={15}
-            Clss="border border-gray-200"
             megas={100}
             advantages={[
                 "Perfecto para navegación web",
@@ -35,7 +34,7 @@ import Card from "../components/CardPlans.astro";
             planName="Plus"
             price={20}
             megas={500}
-            Clss="w-full max-w-sm p-4 bg-white border-4 border-[var(--bg-main-green)] rounded-lg shadow-sm sm:p-8"
+            favorite={true}
             advantages={[
                 "Ideal para múltiples dispositivos",
                 "Streaming en HD sin interrupciones",
@@ -47,7 +46,6 @@ import Card from "../components/CardPlans.astro";
         <Card
             planName="Ultra"
             price={25}
-            Clss="border border-gray-200"
             megas={1000}
             advantages={[
                 "Velocidad gigabit ultrarrápida",
