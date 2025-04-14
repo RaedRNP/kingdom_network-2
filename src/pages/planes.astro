@@ -1,14 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import Card from "../components/CardPlans.astro";
+import Bolt from "../assets/bolt.svg";
+import Shield from "../assets/shield.svg";
+import Device from "../assets/device.svg";
 ---
 
 <Layout>
     <section
-        class="mt-20 sm:mt-28 h-2/4 w-full p-10 flex flex-col justify-center items-center text-center"
+        class="mt-20 sm:mt-28 h-2/5 w-full p-10 flex flex-col justify-center items-center text-center"
     >
         <h2 class="text-2xl sm:text-5xl font-bold mb-2">
-            Planes de Internet para Todos
+            Planes de Internet para Todos.
         </h2>
         <h3 class="text-base sm:text-xl mt-4">
             Conectividad confiable y de alta velocidad para tu hogar y negocio.
@@ -28,7 +32,6 @@ import Card from "../components/CardPlans.astro";
                 "Streaming en calidad estándar",
                 "Soporte técnico incluido",
             ]}
-            btnActive={false}
         />
         <Card
             planName="Plus"
@@ -41,7 +44,6 @@ import Card from "../components/CardPlans.astro";
                 "Videoconferencias sin retrasos",
                 "Soporte técnico prioritario",
             ]}
-            btnActive={false}
         />
         <Card
             planName="Ultra"
@@ -54,7 +56,73 @@ import Card from "../components/CardPlans.astro";
                 "Streaming en 4K en múltiples dispositivos",
                 "Soporte técnico VIP 24/7",
             ]}
-            btnActive={false}
         />
+    </section>
+    <section
+        class="min-h-2/3 h-auto flex flex-col justify-around items-center md:border border-gray-300 md:m-2 rounded-lg py-12 bg-white"
+    >
+        <h3 class="text-3xl font-bold">¿Por qué elegirnos?</h3>
+        <div class="flex w-full">
+            <div class="text-center grow w-1/3 md:p-5 p-2">
+                <Image
+                    src={Bolt}
+                    alt="bolt icon"
+                    class="bg-gray-200 rounded-full w-12 md:w-20 p-2 md:p-5 mx-auto"
+                />
+                <h4 class="font-bold my-4 text-sm md:text-lg">
+                    Respaldo Eléctrico
+                </h4>
+                <p class="text-gray-600 text-xs md:text-base">
+                    Nuestro servicio cuenta con sistemas de respaldo eléctrico
+                    que garantizan la continuidad de tu conexión incluso durante
+                    cortes de energía.
+                </p>
+            </div>
+            <div class="text-center grow w-1/3 md:p-5 p-2">
+                <Image
+                    src={Shield}
+                    alt="shield icon"
+                    class="bg-gray-200 rounded-full w-12 md:w-20 p-2 md:p-5 mx-auto"
+                />
+                <h4 class="font-bold my-4 text-sm md:text-lg">
+                    Servicio Técnico Profesional
+                </h4>
+                <p class="text-gray-600 text-xs md:text-base">
+                    Contamos con un equipo de técnicos certificados listos para
+                    asistirte en cualquier momento que lo necesites.
+                </p>
+            </div>
+            <div class="text-center grow w-1/3 md:p-5 p-2">
+                <Image
+                    src={Device}
+                    alt="device icon"
+                    class="bg-gray-200 rounded-full w-12 md:w-20 p-2 md:p-5 mx-auto"
+                />
+                <h4 class="font-bold my-4 text-sm md:text-lg">
+                    Equipos de Vanguardia
+                </h4>
+                <p class="text-gray-600 text-xs md:text-base">
+                    Utilizamos la tecnología más avanzada del mercado para
+                    garantizar una conexión estable y de alta velocidad en todo
+                    momento.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section
+        class="h-auto min-h-1/3 flex flex-col justify-around items-center py-24"
+    >
+        <h3 class="text-3xl font-bold">
+            ¿Listo para una mejor experiencia de internet?
+        </h3>
+        <p class="text-gray-600 my-4 text-lg">
+            Únete a miles de clientes satisfechos que disfrutan de nuestra
+            conexión rápida y confiable todos los días.
+        </p>
+        <button
+            type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mt-2 focus:outline-none"
+            >Consulta con un asesor</button
+        >
     </section>
 </Layout>
