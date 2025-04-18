@@ -1,39 +1,25 @@
 ---
 import Card from "../components/CardPlans.astro";
+import { plans } from "../utils/constants/plans";
 ---
 
 <section
     class="min-h-screen h-auto flex flex-col justify-around items-center md:border border-gray-300 md:m-2 rounded-lg py-12 bg-white"
 >
     <h2
-        class="text-xl sm:text-4xl text-center font-semibold sm:w-2/3 py-6 sm:py-0"
+        class="text-xl sm:text-4xl text-center font-semibold sm:w-2/3 py-6 sm:py-0 px-8"
     >
         Tu conexión ideal te espera: explora nuestros planes hechos a tu medida.
     </h2>
-    <p class="sm:w-2/3 text-center text-base sm:text-xl pb-12 pt-6">
+    <p class="sm:w-2/3 text-center text-base sm:text-xl pb-8 px-8">
         Contamos con planes que se ajustan a tus necesidades.
     </p>
     <div
-        class="w-full min-h-fit h-auto flex flex-row items-center justify-evenly gap-4 overflow-x-auto overscroll-contain pb-4 pl-4 pr-4"
+        class="w-full min-h-fit h-auto flex flex-row items-center justify-evenly gap-8 overflow-x-auto overscroll-contain pb-4 pl-4 pr-4"
     >
-        <Card
-            planName="Esencial"
-            price={15}
-            megas={100}
-            desc="Navega, chatea y mantente informado con Internet Esencial. Los 100 Mbps te brindan una conexión estable para las tareas online básicas como revisar correos, redes sociales y streaming de video estándar. Simple, efectivo y económico."
-        />
-        <Card
-            planName="Plus"
-            price={20}
-            megas={500}
-            favorite={true}
-            desc="Más velocidad para más posibilidades. Internet Plus con 500 Mbps es perfecto para streaming en HD/4K, videojuegos online, videollamadas y conectar varios dispositivos simultáneamente sin perder rendimiento. La opción ideal para hogares activos y usuarios que buscan una experiencia superior."
-        />
-        <Card
-            planName="Ultra"
-            price={25}
-            megas={1000}
-            desc="Velocidad Gigabit para los que quieren lo máximo. Internet Pro te da 1000 Mbps para una experiencia sin igual. Descargas ultrarrápidas, la menor latencia para gaming competitivo, streaming 4K/8K fluido en múltiples pantallas y capacidad de sobra para los hogares más tecnológicos. ¡Libera todo el potencial de tu conexión!"
-        />
+        <Card plan={plans[0]} />
+        <Card plan={plans[1]} />
+        <Card plan={plans[2]} />
     </div>
+    <p class="mt-2 text-sm">Sujeto a términos y condiciones.</p>
 </section>
