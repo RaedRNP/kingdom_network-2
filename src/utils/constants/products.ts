@@ -1,0 +1,48 @@
+export let products = [
+  {
+    id: "1",
+    name: "Router AX1800 Linksys",
+    description:
+      "El Router AX1800 Linksys es una opción ideal para aquellos que buscan una conexión rápida y segura en su hogar.",
+    price: 100,
+    image: { src: "", alt: "Product 1" },
+    category: "routers",
+    stock: 10,
+  },
+  {
+    id: "2",
+    name: "Product 2",
+    description: "Description of Product 2",
+    price: 200,
+    image: { src: "", alt: "Product 2" },
+    category: "respaldos",
+    stock: 20,
+  },
+  {
+    id: "3",
+    name: "Product 3",
+    description: "Description of Product 3",
+    price: 300,
+    image: { src: "", alt: "Product 3" },
+    category: "instalaciones",
+    stock: 30,
+  },
+  {
+    id: "4",
+    name: "Product 4",
+    description: "Description of Product 4",
+    price: 400,
+    image: { src: "", alt: "Product 4" },
+    category: "computadoras",
+    stock: 40,
+  },
+  {
+    id: "5",
+    name: "Product 5",
+    description: "Description of Product 5",
+    price: 500,
+    image: { src: "", alt: "Product 5" },
+    category: "routers",
+    stock: 50,
+  },
+];
