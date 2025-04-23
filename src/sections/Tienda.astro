@@ -1,5 +1,6 @@
 ---
-import CardShop from "../components/CardShop.astro";
+import Card from "../components/CardShop.astro";
+import { products } from "../utils/constants/products";
 ---
 
 <section
@@ -18,24 +19,9 @@ import CardShop from "../components/CardShop.astro";
     <div
         class="w-full min-h-fit h-auto flex sm:flex-row flex-col items-center justify-evenly gap-4"
     >
-        <CardShop
-            itemName="Router AX1800 Linksys"
-            price="50"
-            image={{ src: "/noimage.jpg", alt: "Router AX1800 Linksys" }}
-            description="El Router AX1800 Linksys es una opción ideal para aquellos que buscan una conexión rápida y segura en su hogar."
-        />
-        <CardShop
-            itemName="Router AX5400 Mercusys"
-            price="70"
-            image={{ src: "/noimage.jpg", alt: "Router AX5400 Mercusys" }}
-            description="El Router AX5400 Mercusys es una opción ideal para aquellos que buscan una conexión rápida y segura en su hogar."
-        />
-        <CardShop
-            itemName="Router AX8800 Dahua"
-            price="120"
-            image={{ src: "/noimage.jpg", alt: "Router AX8800 Dahua" }}
-            description="El Router AX8800 Dahua es una opción ideal para aquellos que buscan una conexión rápida y segura en su hogar."
-        />
+        <Card product={products[0]} />
+        <Card product={products[1]} />
+        <Card product={products[2]} />
     </div>
     <button
         type="button"
