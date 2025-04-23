@@ -1,9 +1,207 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Card from "../components/CardShop.astro";
+import { products } from "../utils/constants/products";
 ---
 
 <Layout>
-    <main class="mt-20 sm:mt-28">
-        <h2>Tienda</h2>
-    </main>
+    <section
+        class="mt-20 sm:mt-28 h-2/5 w-full p-6 sm:p-10 flex flex-col justify-center items-center text-center"
+    >
+        <h2 class="text-3xl sm:text-5xl font-bold mb-2">
+            Consigue los Equipos de Última Generación
+        </h2>
+        <h3 class="text-lg sm:text-xl mt-4">
+            Todo lo que necesitas para tener máxima velocidad sin
+            interrupciones.
+        </h3>
+    </section>
+
+    <div class="max-w-xl mx-auto mb-8 px-2">
+        <label
+            for="default-search"
+            class="mb-2 text-sm font-medium text-gray-900 sr-only">Buscar</label
+        >
+        <div class="relative">
+            <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+                <svg
+                    class="w-4 h-4 text-gray-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"></path>
+                </svg>
+            </div>
+            <input
+                type="search"
+                id="default-search"
+                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Busca Routers, Mini UPS y Más..."
+                required
+            />
+        </div>
+    </div>
+
+    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <ul
+            class="flex flex-wrap -mb-px text-sm font-medium text-center"
+            id="default-tab"
+            data-tabs-toggle="#default-tab-content"
+            role="tablist"
+        >
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg"
+                    id="todo-tab"
+                    data-tabs-target="#todo"
+                    type="button"
+                    role="tab"
+                    aria-controls="todo"
+                    aria-selected="false">Todo</button
+                >
+            </li>
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="routers-tab"
+                    data-tabs-target="#routers"
+                    type="button"
+                    role="tab"
+                    aria-controls="routers"
+                    aria-selected="false">Routers</button
+                >
+            </li>
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="respaldos-tab"
+                    data-tabs-target="#respaldos"
+                    type="button"
+                    role="tab"
+                    aria-controls="respaldos"
+                    aria-selected="false">Respaldos</button
+                >
+            </li>
+            <li role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="instalaciones-tab"
+                    data-tabs-target="#instalaciones"
+                    type="button"
+                    role="tab"
+                    aria-controls="instalaciones"
+                    aria-selected="false">Instalaciones</button
+                >
+            </li>
+        </ul>
+    </div>
+    <div id="default-tab-content">
+        <div
+            class="hidden p-4 bg-gray-50 item active"
+            id="todo"
+            role="tabpanel"
+            aria-labelledby="todo-tab"
+        >
+            <div
+                class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 sm:p-12"
+            >
+                {products.map((product) => <Card product={product} />)}
+            </div>
+        </div>
+        <div
+            class="hidden p-4 bg-gray-50 item"
+            id="routers"
+            role="tabpanel"
+            aria-labelledby="routers-tab"
+        >
+            <div
+                class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 sm:p-12"
+            >
+                {
+                    products.map((product) => {
+                        if (product.category === "routers")
+                            return <Card product={product} />;
+                    })
+                }
+            </div>
+        </div>
+        <div
+            class="hidden p-4 bg-gray-50 item"
+            id="respaldos"
+            role="tabpanel"
+            aria-labelledby="respaldos-tab"
+        >
+            <div
+                class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 sm:p-12"
+            >
+                {
+                    products.map((product) => {
+                        if (product.category === "respaldos")
+                            return <Card product={product} />;
+                    })
+                }
+            </div>
+        </div>
+        <div
+            class="hidden p-4 bg-gray-50 item"
+            id="instalaciones"
+            role="tabpanel"
+            aria-labelledby="instalaciones-tab"
+        >
+            <div
+                class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 sm:p-12"
+            >
+                {
+                    products.map((product) => {
+                        if (product.category === "instalaciones")
+                            return <Card product={product} />;
+                    })
+                }
+            </div>
+        </div>
+    </div>
 </Layout>
+
+<script>
+    const searchInput = document.getElementById("default-search");
+    const tabs = document.querySelectorAll(".item");
+
+    let activeTab = document.querySelector(".item.active");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            tabs.forEach((tab) => tab.classList.remove("active"));
+            tab.classList.add("active");
+            activeTab = tab;
+        });
+    });
+
+    searchInput?.addEventListener("input", () => {
+        const searchTerm = (
+            searchInput as HTMLInputElement
+        ).value.toLowerCase();
+        const products = document.querySelectorAll(".product");
+
+        products.forEach((product) => {
+            const h5Element = product.querySelector("h5");
+            // Check if the h5 element exists and has text content before accessing it
+            const productName = h5Element?.textContent?.toLowerCase();
+
+            // Check if productName is a string and includes the search term
+            if (productName && productName.includes(searchTerm)) {
+                product.classList.remove("hidden");
+            } else {
+                product.classList.add("hidden");
+            }
+        });
+    });
+</script>
