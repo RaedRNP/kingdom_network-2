@@ -1,9 +1,50 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Flag from "../assets/flag-pin.svg";
+import Headset from "../assets/headset.svg";
+import Message from "../assets/message-user.svg";
 ---
 
 <Layout>
-    <main class="mt-20 sm:mt-28">
-        <h2>Contacto</h2>
-    </main>
+    <section
+        class="mt-20 sm:mt-28 h-2/5 w-full p-6 sm:p-10 flex flex-col justify-center items-center text-center"
+    >
+        <h2 class="text-3xl sm:text-5xl font-bold mb-2">Ponte en Contacto</h2>
+        <h3 class="text-lg sm:text-xl mt-4">
+            ¿Tienes preguntas sobre nuestros planes, instalación o soporte?
+            Llámanos.
+        </h3>
+    </section>
+    <section
+        class="min-h-2/3 h-auto grid lg:grid-cols-2 justify-between items-center md:border border-gray-300 md:m-2 rounded-lg p-4 sm:p-12 bg-white"
+    >
+        <div class="grid grid-rows-2 gap-6 w-full p-4">
+            <div class="flex gap-6">
+                <button
+                    type="button"
+                    class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base w-full h-48 px-5 py-2.5 text-center"
+                    ><Message class="mx-auto mb-2" /> Atención al Cliente</button
+                >
+                <button
+                    type="button"
+                    class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base w-full h-48 px-5 py-2.5 text-center"
+                    ><Headset class="mx-auto mb-2" /> Soporte Técnico</button
+                >
+            </div>
+            <button
+                type="button"
+                class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-base w-full h-48 px-5 py-2.5 text-center"
+                ><Flag class="mx-auto mb-2" /> Solicitar Instalación</button
+            >
+        </div>
+        <div class="h-full flex items-center p-4">
+            <iframe
+                class="rounded-md ring-1 ring-blue-700 w-full h-[25.5rem]"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245.42320659226417!2d-71.31880916655066!3d10.199218387085146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e89d1e2b6ea0521%3A0x78876151ad90a0d!2sKingdom%20Network%2C%20C.A!5e0!3m2!1ses-419!2sjp!4v1745432494500!5m2!1ses-419!2sjp"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
 </Layout>
