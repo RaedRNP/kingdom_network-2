@@ -10,7 +10,7 @@ export const plans = [
       "Instalación estándar incluida",
       "Soporte 24/7",
     ],
-    ctaLink: "/contact?plan=basico",
+    ctaLink: "/contacto?plan=basico",
     ctaText: "Contratar Ahora",
   },
   {
