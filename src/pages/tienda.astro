@@ -1,7 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/CardShop.astro";
+import { getCollection } from "astro:content";
 import { products } from "../utils/constants/products";
+
+const strapiProductos = await getCollection("strapiProductosLoader");
+const BASE_URL = await import.meta.env.STRAPI_URL;
+
+function getProductoImg(url: string | null) {
+    if (url == null) return null;
+    if (url.startsWith("data:")) return url;
+    if (url.startsWith("http") || url.startsWith("//")) return url;
+
+    return `${BASE_URL}${url}`;
+}
 ---
 
 <Layout>
@@ -114,7 +126,11 @@ import { products } from "../utils/constants/products";
             <div
                 class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-12 sm:p-12"
             >
-                {products.map((product) => <Card product={product} />)}
+                {
+                    strapiProductos.map((product) => (
+                        <Card product={product.data} />
+                    ))
+                }
             </div>
         </div>
         <div
