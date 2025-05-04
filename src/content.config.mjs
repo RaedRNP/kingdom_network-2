@@ -25,8 +25,6 @@ const strapiProductosLoader = defineCollection({
       }
       const { data } = await response.json();
 
-      console.log(data);
-
       return data.map((item) => ({
         id: item.id.toString(),
         documentId: item.documentId,
