@@ -1,16 +1,26 @@
 ---
 export const prerender = false;
 let { product } = Astro.props;
+
+const BASE_URL = await import.meta.env.STRAPI_URL;
+
+function getProductoImg(url: string | null) {
+    if (url == null) return null;
+    if (url.startsWith("data:")) return url;
+    if (url.startsWith("http") || url.startsWith("//")) return url;
+
+    return `${BASE_URL}${url}`;
+}
 ---
 
 <div
     class="h-[35rem] w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm flex justify-evenly flex-col product"
 >
-    <a href={`/products/${product?.id}`}>
+    <a href={`item/${product?.id}`}>
         <img
             loading="lazy"
             class="p-8 rounded-t-lg"
-            src={"/noimage.jpg"}
+            src={getProductoImg(product.imagen.url)}
             alt={"Product Image"}
         />
     </a>

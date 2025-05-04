@@ -4,19 +4,9 @@ import Card from "../components/CardShop.astro";
 import { getCollection } from "astro:content";
 
 const strapiProductos = await getCollection("strapiProductosLoader");
-const BASE_URL = await import.meta.env.STRAPI_URL;
-console.log(strapiProductos);
 
 if (!strapiProductos) {
     throw new Error("No se encontraron productos");
-}
-
-function getProductoImg(url: string | null) {
-    if (url == null) return null;
-    if (url.startsWith("data:")) return url;
-    if (url.startsWith("http") || url.startsWith("//")) return url;
-
-    return `${BASE_URL}${url}`;
 }
 ---
 
