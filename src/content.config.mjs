@@ -18,31 +18,41 @@ const strapiProductosLoader = defineCollection({
       },
     });
 
-    const response = await fetch(url.href);
-    const { data } = await response.json();
+    try {
+      const response = await fetch(url.href);
+      if (!response.ok) {
+        return [];
+      }
+      const { data } = await response.json();
 
-    return data.map((item) => ({
-      id: item.id.toString(),
-      documentId: item.documentId,
-      nombre: item.nombre,
-      descripcion: item.descripcion,
-      precio: item.precio,
-      cantidad: item.cantidad,
-      createdAt: item.createdAt,
-      updatedAt: item.updatedAt,
-      publishedAt: item.publishedAt,
-      imagen: {
-        id: item.imagen.id,
-        documentId: item.imagen.documentId,
-        url: item.imagen.url,
-        alternativeText: item.imagen.alternativeText,
-      },
-      category: {
-        id: item.category.id,
-        documentId: item.category.documentId,
-        name: item.category.name,
-      },
-    }));
+      console.log(data);
+
+      return data.map((item) => ({
+        id: item.id.toString(),
+        documentId: item.documentId,
+        nombre: item.nombre,
+        descripcion: item.descripcion,
+        precio: item.precio,
+        cantidad: item.cantidad,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+        publishedAt: item.publishedAt,
+        imagen: {
+          id: item.imagen?.id,
+          documentId: item.imagen?.documentId,
+          url: item.imagen?.url,
+          alternativeText: item.imagen?.alternativeText,
+        },
+        category: {
+          id: item.category.id,
+          documentId: item.category.documentId,
+          name: item.category.name,
+        },
+      }));
+    } catch (e) {
+      console.error(e.message);
+    }
+    return [];
   },
   schema: z.object({
     id: z.string(),
@@ -54,12 +64,14 @@ const strapiProductosLoader = defineCollection({
     createdAt: z.string(),
     updatedAt: z.string(),
     publishedAt: z.string(),
-    imagen: z.object({
-      id: z.number(),
-      documentId: z.string(),
-      url: z.string().nullable(),
-      alternativeText: z.string().nullable(),
-    }),
+    imagen: z
+      .object({
+        id: z.number(),
+        documentId: z.string(),
+        url: z.string(),
+        alternativeText: z.string().nullable(),
+      })
+      .nullable(),
     category: z.object({
       id: z.number(),
       documentId: z.string(),
