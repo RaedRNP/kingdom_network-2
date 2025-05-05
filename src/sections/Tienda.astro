@@ -1,6 +1,12 @@
 ---
 import Card from "../components/CardShop.astro";
-import { products } from "../utils/constants/products";
+import { getCollection } from "astro:content";
+
+const strapiProductos = await getCollection("strapiProductosLoader");
+
+if (!strapiProductos) {
+    throw new Error("No se encontraron productos");
+}
 ---
 
 <section
@@ -19,9 +25,9 @@ import { products } from "../utils/constants/products";
     <div
         class="w-full min-h-fit h-auto flex sm:flex-row flex-col items-center justify-evenly gap-4"
     >
-        <Card product={products[0]} />
-        <Card product={products[1]} />
-        <Card product={products[2]} />
+        <Card product={strapiProductos[0].data} />
+        <Card product={strapiProductos[1].data} />
+        <Card product={strapiProductos[2].data} />
     </div>
     <a
         href="/tienda"
