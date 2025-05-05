@@ -35,12 +35,13 @@ const strapiProductosLoader = defineCollection({
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
         publishedAt: item.publishedAt,
-        imagen: {
-          id: item.imagen?.id,
-          documentId: item.imagen?.documentId,
-          url: item.imagen?.url,
-          alternativeText: item.imagen?.alternativeText,
-        },
+        imagen:
+          {
+            id: item.imagen?.id || null,
+            documentId: item.imagen?.documentId || null,
+            url: item.imagen?.url || null,
+            alternativeText: item.imagen?.alternativeText || null,
+          } || null,
         category: {
           id: item.category.id,
           documentId: item.category.documentId,
@@ -62,14 +63,14 @@ const strapiProductosLoader = defineCollection({
     createdAt: z.string(),
     updatedAt: z.string(),
     publishedAt: z.string(),
-    imagen: z
-      .object({
-        id: z.number(),
-        documentId: z.string(),
-        url: z.string(),
-        alternativeText: z.string().nullable(),
-      })
-      .nullable(),
+    imagen: z.nullable(
+      z.object({
+        id: z.nullable(z.number()),
+        documentId: z.nullable(z.string()),
+        url: z.nullable(z.string()),
+        alternativeText: z.nullable(z.string()),
+      }),
+    ),
     category: z.object({
       id: z.number(),
       documentId: z.string(),
