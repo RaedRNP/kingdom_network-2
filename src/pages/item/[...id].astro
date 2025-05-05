@@ -32,9 +32,18 @@ const data = page[0].data;
                 </div>
                 <p class="mb-8 md:w-2/3">{data.descripcion}</p>
             </div>
-            <h3 class="text-4xl font-semibold text-gray-900 mt-8">
-                REF: {data.precio}
-            </h3>
+            <div>
+                <span class="font-semibold"
+                    >Cantidad disponible: {data.cantidad}</span
+                >
+                <h3 class="text-4xl font-semibold text-gray-900 mt-8">
+                    REF: {data.precio}
+                </h3>
+                <button
+                    class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full py-2.5 text-center"
+                    >Ordenar</button
+                >
+            </div>
         </div>
     </section>
 </Layout>
