@@ -1,0 +1,25 @@
+---
+export const prerender = false;
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import getImg from "../../utils/common/getImg";
+const { id } = Astro.params;
+
+const page = await getCollection("strapiProductosLoader", ({ data }) => {
+    return data.documentId === id;
+});
+
+const data = page[0].data;
+---
+
+<Layout>
+    <section class="w-full mt-20 sm:mt-28">
+        <img
+            src={getImg(data.imagen?.url)}
+            alt={data.imagen?.alternativeText}
+        />
+        <h2>{data.nombre}</h2>
+        <p>{data.descripcion}</p>
+        <h3>{data.precio}</h3>
+    </section>
+</Layout>
