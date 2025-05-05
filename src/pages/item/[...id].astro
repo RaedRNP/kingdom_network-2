@@ -13,13 +13,28 @@ const data = page[0].data;
 ---
 
 <Layout>
-    <section class="w-full mt-20 sm:mt-28">
+    <section class="mt-22 sm:mt-28 flex flex-col sm:flex-row">
         <img
+            class="sm:w-2/5 w-full p-2 rounded-lg"
             src={getImg(data.imagen?.url)}
             alt={data.imagen?.alternativeText}
         />
-        <h2>{data.nombre}</h2>
-        <p>{data.descripcion}</p>
-        <h3>{data.precio}</h3>
+        <div
+            class="md:border border-gray-300 md:m-2 rounded-lg py-12 px-8 bg-white sm:w-3/5 w-full flex flex-col justify-between"
+        >
+            <div>
+                <h2 class="text-4xl font-semibold tracking-tight text-gray-900">
+                    {data.nombre}
+                </h2>
+                <div
+                    class="border border-gray-300 w-full h-0.5 rounded-2xl my-4"
+                >
+                </div>
+                <p class="mb-8 md:w-2/3">{data.descripcion}</p>
+            </div>
+            <h3 class="text-4xl font-semibold text-gray-900 mt-8">
+                REF: {data.precio}
+            </h3>
+        </div>
     </section>
 </Layout>
