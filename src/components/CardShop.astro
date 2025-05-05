@@ -5,7 +5,7 @@ let { product } = Astro.props;
 const BASE_URL = await import.meta.env.STRAPI_URL;
 
 function getProductoImg(url: string | null) {
-    if (url == null) return null;
+    if (url == null) return "/no-image.png";
     if (url.startsWith("data:")) return url;
     if (url.startsWith("http") || url.startsWith("//")) return url;
 
@@ -16,7 +16,7 @@ function getProductoImg(url: string | null) {
 <div
     class="h-[35rem] w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm flex justify-evenly flex-col product"
 >
-    <a href={`item/${product?.id}`}>
+    <a href={`/item/${product?.documentId}`}>
         <img
             loading="lazy"
             class="p-8 rounded-t-lg"
@@ -25,14 +25,14 @@ function getProductoImg(url: string | null) {
         />
     </a>
     <div class="px-5 pb-5 flex justify-evenly flex-col">
-        <a href={`/products/${product?.id}`}>
+        <a href={`/item/${product?.documentId}`}>
             <h5 class="text-xl font-semibold tracking-tight text-gray-900">
                 {product.nombre}
             </h5>
         </a>
         <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <p>
+                <p class="text-sm">
                     {product?.descripcion}
                 </p>
             </div>
@@ -42,7 +42,7 @@ function getProductoImg(url: string | null) {
                 >Ref: {product?.precio}</span
             >
             <a
-                href={`/products/${product?.id}`}
+                href={`/item/${product?.documentId}`}
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >Ordenar</a
             >
