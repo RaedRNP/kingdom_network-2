@@ -10,14 +10,20 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.2.1",
+    "@astrojs/svelte": "^7.0.13",
     "@tailwindcss/vite": "^4.1.1",
     "@types/qs": "^6.9.18",
     "astro": "^5.7.2",
+    "dotenv": "^16.5.0",
     "flowbite": "^3.1.2",
     "leaflet": "^1.9.4",
+    "node-cron": "^3.0.3",
+    "playwright": "^1.52.0",
     "qs": "^6.14.0",
     "sharp": "^0.34.0",
-    "tailwindcss": "^4.1.1"
+    "svelte": "^5.28.2",
+    "tailwindcss": "^4.1.1",
+    "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }
