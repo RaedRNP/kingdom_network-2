@@ -4,6 +4,14 @@ import { getCollection } from "astro:content";
 
 const strapiProductos = await getCollection("strapiProductosLoader");
 
+let listOfProducts = [];
+
+if (strapiProductos && strapiProductos.length > 0) {
+    listOfProducts.push(strapiProductos[0]);
+    listOfProducts.push(strapiProductos[1]);
+    listOfProducts.push(strapiProductos[2]);
+}
+
 if (!strapiProductos) {
     throw new Error("No se encontraron productos");
 }
@@ -25,9 +33,7 @@ if (!strapiProductos) {
     <div
         class="w-full min-h-fit h-auto flex sm:flex-row flex-col items-center justify-evenly gap-4"
     >
-        <Card product={strapiProductos[0].data} />
-        <Card product={strapiProductos[1].data} />
-        <Card product={strapiProductos[2].data} />
+        {listOfProducts.map((product) => <Card product={product.data} />)}
     </div>
     <a
         href="/tienda"
