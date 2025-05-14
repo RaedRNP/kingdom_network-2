@@ -1,9 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FormFetch from "../components/FormFetch.svelte";
 ---
 
 <Layout>
-    <main class="mt-20 sm:mt-28">
-        <h2>Portal de pago</h2>
-    </main>
+    <section
+        class="mt-20 sm:mt-28 h-4/5 w-full sm:p-6 flex flex-col justify-center items-center relative"
+    >
+        <FormFetch client:visible />
+    </section>
 </Layout>
