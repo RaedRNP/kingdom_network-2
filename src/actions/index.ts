@@ -23,8 +23,9 @@ export const server = {
       };
       try {
         const responseData = await getUser.getUser(FormCI.data.cedula);
-        if (responseData.error) {
-          return responseData.error;
+        if (!responseData.usuario.count) {
+          responseData.error = "Usuario no encontrado.";
+          return responseData;
         }
         return responseData;
       } catch (e) {
