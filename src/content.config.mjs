@@ -3,7 +3,7 @@ import qs from "qs";
 
 const strapiProductosLoader = defineCollection({
   loader: async () => {
-    const BASE_URL = import.meta.env.STRAPI_URL;
+    const BASE_URL = import.meta.env.STRAPI_URL || "http://localhost:1337";
     const path = "/api/items";
     const url = new URL(path, BASE_URL);
 
