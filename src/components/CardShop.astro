@@ -11,7 +11,7 @@ let { product } = Astro.props;
         <img
             loading="lazy"
             class="p-8 rounded-t-lg"
-            src={getImg(product.imagen.url)}
+            src={getImg(product.imagen?.url)}
             alt={"Product Image"}
         />
     </a>
