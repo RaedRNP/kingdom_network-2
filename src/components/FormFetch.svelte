@@ -86,24 +86,24 @@
 {#if userData}
     <div class="h-full w-full absolute bg-black opacity-35"></div>
     <div
-        class="absolute w-1/3 h-2/3 bg-white border border-gray-200 rounded-lg shadow-sm p-8 flex flex-col justify-between"
+        class="absolute w-11/12 sm:w-1/2 md:w-2/3 lg:w-1/3 h-2/3 bg-white border border-gray-200 rounded-lg shadow-sm p-8 flex flex-col justify-between"
     >
         <h5>Hola <span class="font-semibold">{userData.nombre}</span></h5>
 
         <span><ConsultaDeuda debt={userData.deuda} /></span>
-        <div class="w-full">
-            {#if userData.saldo > 0}
-                <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
-                    >Pagar</button
-                >
-            {/if}
+        <div class="w-full flex gap-2 items-center justify-around">
             <button
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
+                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
                 onclick={() => {
                     userData = "";
                 }}>Cerrar</button
             >
+            {#if userData.deuda.length > 0}
+                <button
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
+                    >Pagar</button
+                >
+            {/if}
         </div>
     </div>
 {/if}

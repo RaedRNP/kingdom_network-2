@@ -1,4 +1,5 @@
 <script lang="ts">
+    import add from "../utils/common/sumListNumbers";
     interface FacturaData {
         fecha_emision: string;
         fecha_vencimiento: string;
@@ -21,10 +22,6 @@
     }
 
     const formattedAmount = (amount: number) => amount.toFixed(2);
-
-    function add(accumulator: number, a: number) {
-        return accumulator + a;
-    }
 
     $effect(() => {
         const fetchData = async () => {
