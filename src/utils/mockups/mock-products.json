@@ -1,0 +1,36 @@
+[
+  {
+    "id": "mock-1",
+    "documentId": "mock-doc-1",
+    "nombre": "Producto de Prueba 1",
+    "descripcion": "Este es un producto simulado para probar la tienda.",
+    "precio": 19.95,
+    "cantidad": 100,
+    "createdAt": "2024-01-01T10:00:00.000Z",
+    "updatedAt": "2024-01-01T10:00:00.000Z",
+    "publishedAt": "2024-01-01T10:00:00.000Z",
+    "imagen": null,
+    "category": {
+      "id": 1,
+      "documentId": "mock-cat-1",
+      "name": "Routers"
+    }
+  },
+  {
+    "id": "mock-2",
+    "documentId": "mock-doc-2",
+    "nombre": "Producto de Prueba 2",
+    "descripcion": "Otro producto simulado.",
+    "precio": 29.99,
+    "cantidad": 50,
+    "createdAt": "2024-01-01T10:05:00.000Z",
+    "updatedAt": "2024-01-01T10:05:00.000Z",
+    "publishedAt": "2024-01-01T10:05:00.000Z",
+    "imagen": null,
+    "category": {
+      "id": 2,
+      "documentId": "mock-cat-2",
+      "name": "Routers"
+    }
+  }
+]
