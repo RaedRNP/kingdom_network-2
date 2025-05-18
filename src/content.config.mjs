@@ -1,5 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import qs from "qs";
+import Mockups from "./utils/mockups/mock-products.json";
 
 const strapiProductosLoader = defineCollection({
   loader: async () => {
@@ -7,51 +8,85 @@ const strapiProductosLoader = defineCollection({
     const path = "/api/items";
     const url = new URL(path, BASE_URL);
 
-    url.search = qs.stringify({
-      populate: {
-        imagen: {
-          fields: ["url", "alternativeText"],
-        },
-        category: {
-          fields: ["name"],
+    url.search = qs.stringify(
+      {
+        populate: {
+          imagen: {
+            fields: ["url", "alternativeText"],
+          },
+          category: {
+            fields: ["name"],
+          },
         },
       },
-    });
+      { encodeValuesOnly: true },
+    );
 
     try {
       const response = await fetch(url.href);
       if (!response.ok) {
-        return [];
+        console.warn(
+          `Failed to fetch data from Strapi (${response.status}: ${response.statusText}). Using mock data.`,
+        );
+        return Mockups;
       }
       const { data } = await response.json();
 
-      return data.map((item) => ({
-        id: item.id.toString(),
-        documentId: item.documentId,
-        nombre: item.nombre,
-        descripcion: item.descripcion,
-        precio: item.precio,
-        cantidad: item.cantidad,
-        createdAt: item.createdAt,
-        updatedAt: item.updatedAt,
-        publishedAt: item.publishedAt,
-        imagen:
-          {
-            id: item.imagen?.id || null,
-            documentId: item.imagen?.documentId || null,
-            url: item.imagen?.url || null,
-            alternativeText: item.imagen?.alternativeText || null,
-          } || null,
-        category: {
-          id: item.category.id,
-          documentId: item.category.documentId,
-          name: item.category.name,
-        },
-      }));
+      if (!Array.isArray(data)) {
+        console.error("La respuesta del servidor STRP no es un Array");
+        console.warn("Usando datos del Mockup");
+        return Mockups;
+      }
+
+      const mapData = data
+        .map((item) => {
+          if (!item.attribute) {
+            console.warn("Saltando item sin atributo");
+            return null;
+          }
+
+          const attribute = item.attribute;
+          return data.map((item) => ({
+            id: item.id.toString(),
+            documentId: item.documentId,
+            nombre: attribute.nombre,
+            descripcion: attribute.descripcion,
+            precio: attribute.precio,
+            cantidad: attribute.cantidad,
+            createdAt: attribute.createdAt,
+            updatedAt: attribute.updatedAt,
+            publishedAt: attribute.publishedAt,
+            imagen:
+              {
+                id: attribute.imagen?.id || null,
+                documentId: attribute.imagen?.documentId || null,
+                url: attribute.imagen?.url || null,
+                alternativeText: attribute.imagen?.alternativeText || null,
+              } || null,
+            category: {
+              id: attribute.category.id,
+              documentId: attribute.category.documentId,
+              name: attribute.category.name,
+            },
+          }));
+        })
+        .filter((item) => item !== null);
+
+      if (mapData.length === 0 && data.length > 0) {
+        console.warn(
+          "No valid items mapped from Strapi data. Check your mapping logic.",
+        );
+        console.warn("Using mock data as a fallback.");
+        return Mockups;
+      }
+      console.log(
+        `Successfully fetched and mapped ${mapData.length} items from Strapi.`,
+      );
+      return mapData;
     } catch (e) {
       console.error(e.message);
     }
-    return [];
+    return Mockups;
   },
   schema: z.object({
     id: z.string(),
