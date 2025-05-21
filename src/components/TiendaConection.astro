@@ -4,10 +4,6 @@ import Card from "../components/CardShop.astro";
 import { getCollection } from "astro:content";
 
 const strapiProductos = await getCollection("strapiProductosLoader");
-
-if (!strapiProductos) {
-    throw new Error("No se encontraron productos");
-}
 ---
 
 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
