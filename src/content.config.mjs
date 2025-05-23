@@ -24,7 +24,7 @@ const strapiProductosLoader = defineCollection({
 
     try {
       const response = await fetch(url.href);
-      if (!response.ok) {
+      if (response.status != 200) {
         console.warn(
           `Failed to fetch data from Strapi (${response.status}: ${response.statusText}). Using mock data.`,
         );
@@ -38,51 +38,41 @@ const strapiProductosLoader = defineCollection({
         return Mockups;
       }
 
-      const mapData = data
-        .map((item) => {
-          if (!item.attribute) {
-            console.warn("Saltando item sin atributo");
-            return null;
-          }
-
-          const attribute = item.attribute;
-          return data.map((item) => ({
-            id: item.id.toString(),
-            documentId: item.documentId,
-            nombre: attribute.nombre,
-            descripcion: attribute.descripcion,
-            precio: attribute.precio,
-            cantidad: attribute.cantidad,
-            createdAt: attribute.createdAt,
-            updatedAt: attribute.updatedAt,
-            publishedAt: attribute.publishedAt,
-            imagen:
-              {
-                id: attribute.imagen?.id || null,
-                documentId: attribute.imagen?.documentId || null,
-                url: attribute.imagen?.url || null,
-                alternativeText: attribute.imagen?.alternativeText || null,
-              } || null,
-            category: {
-              id: attribute.category.id,
-              documentId: attribute.category.documentId,
-              name: attribute.category.name,
-            },
-          }));
-        })
-        .filter((item) => item !== null);
-
-      if (mapData.length === 0 && data.length > 0) {
+      if (data.length === 0) {
         console.warn(
           "No valid items mapped from Strapi data. Check your mapping logic.",
         );
         console.warn("Using mock data as a fallback.");
         return Mockups;
       }
+
       console.log(
-        `Successfully fetched and mapped ${mapData.length} items from Strapi.`,
+        `Successfully fetched and mapped ${data.length} items from Strapi.`,
       );
-      return mapData;
+
+      return data.map((item) => ({
+        id: item.id.toString(),
+        documentId: item.documentId,
+        nombre: item.nombre,
+        descripcion: item.descripcion,
+        precio: item.precio,
+        cantidad: item.cantidad,
+        createdAt: item.createdAt,
+        updatedAt: item.updatedAt,
+        publishedAt: item.publishedAt,
+        imagen:
+          {
+            id: item.imagen?.id || null,
+            documentId: item.imagen?.documentId || null,
+            url: item.imagen?.url || null,
+            alternativeText: item.imagen?.alternativeText || null,
+          } || null,
+        category: {
+          id: item.category.id,
+          documentId: item.category.documentId,
+          name: item.category.name,
+        },
+      }));
     } catch (e) {
       console.error(e.message);
     }
