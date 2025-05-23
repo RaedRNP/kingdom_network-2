@@ -50,7 +50,7 @@
     <p style="color: red;">{error}</p>
 {:else if tasaDolar !== null}
     {#if montos.length <= 1}
-        <p>Usted no posee facturas vencidas</p>
+        <p class="text-center">Usted no posee facturas vencidas.</p>
     {:else}
         <p>Facturas vencidas: {montos.length}</p>
         <h5>

@@ -34,9 +34,16 @@
             let facturas = result.data.facturas.facturas;
 
             if (facturas.length == 0) {
-                userData = { nombre, deuda: 0 };
+                userData = {
+                    nombre,
+                    deuda: 0,
+                };
             } else {
-                userData = { nombre, deuda: facturas };
+                userData = {
+                    nombre,
+                    deuda: facturas,
+                    userUrl: result.data.usuario.results[0].id_servicio,
+                };
             }
         } else if (result && result.data.error) {
             // Error de validación de Zod o error retornado por el handler
@@ -88,7 +95,12 @@
     <div
         class="absolute w-11/12 sm:w-1/2 md:w-2/3 lg:w-1/3 h-2/3 bg-white border border-gray-200 rounded-lg shadow-sm p-8 flex flex-col justify-between"
     >
-        <h5>Hola <span class="font-semibold">{userData.nombre}</span></h5>
+        <div>
+            <h5 class="text-lg mb-1 text-center">
+                ¡Hola <span class="font-semibold">{userData.nombre}</span>!
+            </h5>
+            <span class="block w-full h-[1px] bg-gray-300"></span>
+        </div>
 
         <span><ConsultaDeuda debt={userData.deuda} /></span>
         <div class="w-full flex gap-2 items-center justify-around">
@@ -99,9 +111,10 @@
                 }}>Cerrar</button
             >
             {#if userData.deuda.length > 0}
-                <button
-                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
-                    >Pagar</button
+                <a
+                    href={`/portal-pago/${userData.userUrl}`}
+                    class="flex items-center justify-center w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-2.5"
+                    >Pagar</a
                 >
             {/if}
         </div>
