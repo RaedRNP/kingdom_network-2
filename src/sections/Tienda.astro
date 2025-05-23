@@ -4,16 +4,11 @@ import { getCollection } from "astro:content";
 
 const strapiProductos = await getCollection("strapiProductosLoader");
 
-// let listOfProducts = [];
+let listOfProducts = [];
 
-// if (strapiProductos && strapiProductos.length > 0) {
-//     listOfProducts.push(strapiProductos[0]);
-//     listOfProducts.push(strapiProductos[1]);
-//     listOfProducts.push(strapiProductos[2]);
-// } else {
-//     listOfProducts.push(Mockups[0]);
-//     listOfProducts.push(Mockups[1]);
-// }
+listOfProducts.push(strapiProductos[0]);
+listOfProducts.push(strapiProductos[1]);
+listOfProducts.push(strapiProductos[2]);
 
 if (!strapiProductos) {
     throw new Error("No se encontraron productos");
