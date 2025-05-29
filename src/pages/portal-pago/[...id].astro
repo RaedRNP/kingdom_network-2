@@ -1,0 +1,69 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import CasilleroPago from "../../components/portal-pago/casillero-pago.astro";
+const { id } = Astro.params;
+---
+
+<Layout>
+    <main
+        class="mt-22 sm:mt-28 min-h-dvh sm:min-h-4/5 h-fit w-full sm:p-6 grid grid-cols-1 md:grid-cols-2 md:gap-6"
+    >
+        <section class="h-full p-12 flex flex-col justify-between">
+            <h3 class="text-center text-xl sm:text-2xl font-semibold mb-8">
+                Datos de Facturación
+            </h3>
+
+            <fieldset>
+                <legend class="sr-only">Checkbox variants</legend>
+
+                <div class="flex items-center mb-4">
+                    <div class="flex items-center h-5">
+                        <input
+                            id="helper-checkbox"
+                            aria-describedby="helper-checkbox-text"
+                            type="checkbox"
+                            value={25}
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                        />
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label
+                            for="helper-checkbox"
+                            class="font-medium text-gray-900">Plan Mega</label
+                        >
+                        <p class="text-xs font-normal text-gray-500">REF: 25</p>
+                        <p class="text-xs font-normal text-gray-500">
+                            Fecha de emision: 01-01-2025
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-center mb-4">
+                    <div class="flex items-center h-5">
+                        <input
+                            id="helper-checkbox"
+                            aria-describedby="helper-checkbox-text"
+                            type="checkbox"
+                            value={60}
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
+                        />
+                    </div>
+                    <div class="ms-2 text-sm">
+                        <label
+                            for="helper-checkbox"
+                            class="font-medium text-gray-900"
+                            >Router AX3500</label
+                        >
+                        <p class="text-xs font-normal text-gray-500">REF: 60</p>
+                        <p class="text-xs font-normal text-gray-500">
+                            Fecha de emision: 01-01-2025
+                        </p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <h5 class="font-semibold">Total: <span>0</span> Bs</h5>
+        </section>
+        <CasilleroPago />
+    </main>
+</Layout>
