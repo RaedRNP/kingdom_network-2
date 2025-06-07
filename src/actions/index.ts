@@ -1,12 +1,7 @@
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
-import getUser from "../utils/api/index";
-
-interface FormCI {
-  data: {
-    cedula: string;
-  };
-}
+import { getUser, getUserByIdService } from "../utils/api/index";
+import type { FormCI } from "../utils/classes/FormCI";
 
 export const server = {
   getUserDebt: defineAction({
@@ -22,14 +17,27 @@ export const server = {
         },
       };
       try {
-        const responseData = await getUser.getUser(FormCI.data.cedula);
-        if (!responseData.usuario.count) {
-          responseData.error = "Usuario no encontrado.";
-          return responseData;
+        const responseData = await getUser(FormCI.data.cedula);
+        console.log(responseData);
+        if (responseData.status === 404) {
+          throw "Usuario no encontrado";
         }
         return responseData;
       } catch (e) {
-        throw new Error(`Error en la action: ${e}`);
+        throw new Error(`${e}`);
+      }
+    },
+  }),
+  getUserById: defineAction({
+    handler: async (id: string | number) => {
+      try {
+        const responseData = await getUserByIdService(id);
+        if (responseData.status === 404) {
+          throw "Usuario no encontrado Err: actions";
+        }
+        return responseData;
+      } catch (e) {
+        throw new Error(`${e}`);
       }
     },
   }),
