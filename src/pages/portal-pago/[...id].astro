@@ -1,7 +1,36 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CasilleroPago from "../../components/portal-pago/casillero-pago.astro";
+import { actions } from "astro:actions";
+import DebtExchange from "../../components/portal-pago/DebtExchange.svelte";
 const { id } = Astro.params;
+
+interface Factura {
+    fecha_vencimiento: string;
+    fecha_emision: string;
+    total: number;
+    id: number;
+}
+
+if (!id) {
+    return {
+        status: 404,
+        body: "ID not found",
+    };
+}
+
+const { data, error } = await Astro.callAction(actions.getUserById, id);
+
+if (!data) {
+    return Astro.redirect("/portal-pago");
+}
+if (error) {
+    console.error(error);
+    return Astro.redirect("/portal-pago");
+}
+if (data.saldo <= 0) {
+    return Astro.redirect("/portal-pago");
+}
 ---
 
 <Layout>
@@ -9,60 +38,47 @@ const { id } = Astro.params;
         class="mt-22 sm:mt-28 min-h-dvh sm:min-h-4/5 h-fit w-full sm:p-6 grid grid-cols-1 md:grid-cols-2 md:gap-6"
     >
         <section class="h-full p-12 flex flex-col justify-between">
-            <h3 class="text-center text-xl sm:text-2xl font-semibold mb-8">
-                Datos de Facturación
-            </h3>
+            <div>
+                <h3 class="text-center text-xl sm:text-2xl font-semibold mb-2">
+                    Datos de Facturación
+                </h3>
+                <p class="text-center font-bold">{data.nombre}</p>
+            </div>
 
             <fieldset>
                 <legend class="sr-only">Checkbox variants</legend>
 
-                <div class="flex items-center mb-4">
-                    <div class="flex items-center h-5">
-                        <input
-                            id="helper-checkbox"
-                            aria-describedby="helper-checkbox-text"
-                            type="checkbox"
-                            value={25}
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
-                        />
-                    </div>
-                    <div class="ms-2 text-sm">
-                        <label
-                            for="helper-checkbox"
-                            class="font-medium text-gray-900">Plan Mega</label
-                        >
-                        <p class="text-xs font-normal text-gray-500">REF: 25</p>
-                        <p class="text-xs font-normal text-gray-500">
-                            Fecha de emision: 01-01-2025
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex items-center mb-4">
-                    <div class="flex items-center h-5">
-                        <input
-                            id="helper-checkbox"
-                            aria-describedby="helper-checkbox-text"
-                            type="checkbox"
-                            value={60}
-                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
-                        />
-                    </div>
-                    <div class="ms-2 text-sm">
-                        <label
-                            for="helper-checkbox"
-                            class="font-medium text-gray-900"
-                            >Router AX3500</label
-                        >
-                        <p class="text-xs font-normal text-gray-500">REF: 60</p>
-                        <p class="text-xs font-normal text-gray-500">
-                            Fecha de emision: 01-01-2025
-                        </p>
-                    </div>
-                </div>
+                {
+                    data.facturas.map((factura: Factura) => {
+                        return (
+                            <div class="flex items-center mb-4">
+                                <div class="ms-2 text-sm">
+                                    <label
+                                        for="helper-checkbox"
+                                        class="font-medium text-gray-900"
+                                    >
+                                        <DebtExchange
+                                            monto={factura.total}
+                                            client:load
+                                        />
+                                    </label>
+                                    <p class="text-xs font-normal text-gray-500">
+                                        REF: {factura.total}
+                                    </p>
+                                    <p class="text-xs font-normal text-gray-500">
+                                        Fecha de emision:{" "}
+                                        {factura.fecha_emision}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </fieldset>
 
-            <h5 class="font-semibold">Total: <span>0</span> Bs</h5>
+            <h5 class="font-semibold">
+                Total: <DebtExchange monto={data.saldo} client:load /> Bs
+            </h5>
         </section>
         <CasilleroPago />
     </main>
