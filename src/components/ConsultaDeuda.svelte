@@ -14,7 +14,7 @@
     let fecha: string[] = [];
     let montos: number[] = [];
 
-    if (debt.length >= 1) {
+    if (debt.length > 0) {
         debt.map((i: FacturaData) => {
             fecha.push(i.fecha_emision);
             montos.push(i.total);
@@ -45,11 +45,11 @@
 </script>
 
 {#if loading}
-    <p>Loading exchange rate...</p>
+    <p>Cargando total al cambio...</p>
 {:else if error}
     <p style="color: red;">{error}</p>
 {:else if tasaDolar !== null}
-    {#if montos.length <= 1}
+    {#if montos.length < 1}
         <p class="text-center">Usted no posee facturas vencidas.</p>
     {:else}
         <p>Facturas vencidas: {montos.length}</p>
