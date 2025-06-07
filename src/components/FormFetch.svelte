@@ -11,7 +11,7 @@
         if (!Number(ci)) {
             error = "Este campo solo debe contener números.";
             loading = false;
-            throw new Error("error");
+            throw new Error(error);
         }
     }
 
@@ -29,11 +29,11 @@
 
         loading = false;
 
-        if (result && !result.data.error) {
+        if (result && !result.error) {
             let nombre = result.data.usuario.results[0].nombre;
             let facturas = result.data.facturas.facturas;
 
-            if (facturas.length == 0) {
+            if (facturas.length < 1) {
                 userData = {
                     nombre,
                     deuda: 0,
@@ -45,9 +45,9 @@
                     userUrl: result.data.usuario.results[0].id_servicio,
                 };
             }
-        } else if (result && result.data.error) {
+        } else if (result && result.error) {
             // Error de validación de Zod o error retornado por el handler
-            error = `${result.data.error}`;
+            error = `${result.error}`;
         } else {
             error = "Ocurrió un error inesperado al procesar la solicitud.";
         }
