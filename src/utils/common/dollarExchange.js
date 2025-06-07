@@ -3,21 +3,39 @@ import fs from "fs"; // Import the filesystem module
 import path from "path"; // Import the path module
 import dotenv from "dotenv";
 
-dotenv.config();
+// Calculate the path to the project root directory (3 levels up from current file)
+const projectRootPath = path.resolve(process.cwd(), "../../..");
+
+// Configure dotenv to look for .env file in project root
+dotenv.config({ path: path.join(projectRootPath, ".env") });
+
+// Log the path being used to find .env file for debugging
+console.log(`Looking for .env file at: ${path.join(projectRootPath, ".env")}`);
 
 const bearerApiExchange = process.env.BEARER_API_EXCHANGE;
 
-if (!bearerApiExchange) {
+// Show the API key for debugging (masked for security)
+if (bearerApiExchange) {
+  const maskedKey =
+    bearerApiExchange.substring(0, 4) +
+    "****" +
+    (bearerApiExchange.length > 8
+      ? bearerApiExchange.substring(bearerApiExchange.length - 4)
+      : "");
+  console.log(`BEARER_API_EXCHANGE loaded: ${maskedKey}`);
+} else {
   console.error(
     "FATAL ERROR: BEARER_API_EXCHANGE is not defined in .env file.",
   );
 }
 
 // Define the path for the JSON file in the public directory
-// process.cwd() gives the current working directory, which is the project root
-const publicDir = path.join(process.cwd(), "public");
+// Use projectRootPath instead of process.cwd() to ensure we're using the project root
+const publicDir = path.join(projectRootPath, "public");
 const dataDir = path.join(publicDir, "data");
 const jsonFilePath = path.join(dataDir, "exchangeRate.json");
+
+console.log(`JSON file will be saved to: ${jsonFilePath}`);
 
 // Ensure the data directory exists. { recursive: true } makes it work even if 'public' doesn't exist.
 if (!fs.existsSync(dataDir)) {
@@ -41,6 +59,7 @@ async function getExchangeDaily() {
       // 'x-api-key': TU_API_KEY, // Algunas APIs usan este formato
     };
 
+    console.log(`Making API request to ExchangeRate API...`);
     const respuesta = await fetch(
       `https://v6.exchangerate-api.com/v6/${bearerApiExchange}/latest/USD`,
       { headers },
